@@ -1,5 +1,5 @@
 # Secrets
-Config.plist
+**/Config.plist
 
 # Xcode
 DerivedData/
