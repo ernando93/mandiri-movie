@@ -17,7 +17,7 @@ enum APIEndpoint {
     
     var url: URL? {
         let baseURL   = "https://api.themoviedb.org/3"
-        let apiKey    = "xxxxxxxxxxxxx"
+        let apiKey    = APIConfiguration.apiKey
         let path: String = {
             switch self {
             case .genres:
