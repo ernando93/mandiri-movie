@@ -14,23 +14,28 @@ final class GenresPresenter: GenresViewToPresenterProtocol {
     
     func viewDidLoad() {
         Task {
-            do {
-                guard let interactor else { return }
-                let genres = try await interactor.fetchGenres()
-                
-                await MainActor.run {
-                    print("Genres: \(genres)")
-                    view?.showGenres(genres)
-                }
-            } catch {
-                await MainActor.run {
-                    view?.showError(error.localizedDescription)
-                }
-            }
+            await loadGenres()
         }
     }
     
+    private func loadGenres() async {
+        view?.showLoading()
+        
+        defer {
+            view?.hideLoading()
+        }
+        
+        do {
+            guard let interactor else { return }
+            let genres = try await interactor.fetchGenres()
+            view?.showGenres(genres)
+        } catch {
+            view?.showError(error.localizedDescription)
+        }
+    }
+    
+    
     func didSelectGenre(_ genre: Genre) {
-        print("didSelectGenre")
+        print("didSelectGenre with genre: \(genre.name)")
     }
 }
