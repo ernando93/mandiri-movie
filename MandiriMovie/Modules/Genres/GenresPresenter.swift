@@ -36,6 +36,7 @@ final class GenresPresenter: GenresViewToPresenterProtocol {
     
     
     func didSelectGenre(_ genre: Genre) {
-        print("didSelectGenre with genre: \(genre.name)")
+        guard let view = view else { return }
+        router?.navigateToMovieList(from: view, genre: genre)
     }
 }

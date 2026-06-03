@@ -10,10 +10,10 @@ import UIKit
 //MARK: - Presenter -> Router
 protocol GenresPresenterToRouterProtocol: AnyObject {
     static func createModule() -> UIViewController
-    func navigateToMovieList()
+    func navigateToMovieList(from view: GenresPresenterToViewProtocol, genre: Genre)
 }
 
-// MARK: - View → Presenter
+// MARK: - View -> Presenter
 protocol GenresViewToPresenterProtocol: AnyObject {
     var view: GenresPresenterToViewProtocol? { get set }
     var interactor: GenresPresenterToInteractorProtocol? { get set }
@@ -23,12 +23,12 @@ protocol GenresViewToPresenterProtocol: AnyObject {
     func didSelectGenre(_ genre: Genre)
 }
 
-// MARK: - Presenter → Interactor
+// MARK: - Presenter -> Interactor
 protocol GenresPresenterToInteractorProtocol: AnyObject {
     func fetchGenres() async throws -> [Genre]
 }
 
-// MARK: - Presenter → View
+// MARK: - Presenter -> View
 protocol GenresPresenterToViewProtocol: AnyObject {
     func showGenres(_ genres: [Genre])
     func showError(_ message: String)

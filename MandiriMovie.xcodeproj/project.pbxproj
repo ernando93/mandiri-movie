@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E0987E02FD0389800B9F2D3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5E0987DF2FD0389800B9F2D3 /* SnapKit */; };
+		5E0988062FD06AF800B9F2D3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5E0988052FD06AF800B9F2D3 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E0988062FD06AF800B9F2D3 /* Kingfisher in Frameworks */,
 				5E0987E02FD0389800B9F2D3 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +141,7 @@
 			name = MandiriMovie;
 			packageProductDependencies = (
 				5E0987DF2FD0389800B9F2D3 /* SnapKit */,
+				5E0988052FD06AF800B9F2D3 /* Kingfisher */,
 			);
 			productName = MandiriMovie;
 			productReference = 5E0987132FCFFBCA00B9F2D3 /* MandiriMovie.app */;
@@ -224,6 +227,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				5E0987AC2FD0366D00B9F2D3 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5E0988042FD06AEC00B9F2D3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5E0987142FCFFBCA00B9F2D3 /* Products */;
@@ -618,6 +622,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		5E0988042FD06AEC00B9F2D3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -625,6 +637,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5E0987AC2FD0366D00B9F2D3 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		5E0988052FD06AF800B9F2D3 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E0988042FD06AEC00B9F2D3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

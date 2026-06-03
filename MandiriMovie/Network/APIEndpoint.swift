@@ -16,7 +16,7 @@ enum APIEndpoint {
     case videos(movieId: Int)
     
     var url: URL? {
-        let baseURL   = "https://api.themoviedb.org/3"
+        let baseURL   = APIConstants.baseURL
         let apiKey    = APIConfiguration.apiKey
         let path: String = {
             switch self {

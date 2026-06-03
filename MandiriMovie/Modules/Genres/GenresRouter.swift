@@ -22,7 +22,9 @@ final class GenresRouter: GenresPresenterToRouterProtocol {
         return UINavigationController(rootViewController: view)
     }
     
-    func navigateToMovieList() {
-        print("Navigate to MovieList")
+    func navigateToMovieList(from view: GenresPresenterToViewProtocol, genre: Genre) {
+        guard let vc = view as? UIViewController else { return }
+        let moviesVC = MoviesRouter.createModule(genre: genre)
+        vc.navigationController?.pushViewController(moviesVC, animated: true)
     }
 }
