@@ -17,6 +17,6 @@ final class MoviesInteractor: MoviesPresenterToInteractorProtocol {
     
     func fetchMovies(genreId: Int, page: Int) async throws -> ([Movie], Int) {
         let response = try await apiService.request(endpoint: .discoverMovies(genreId: genreId, page: page)) as MovieResponse
-        return (response.movies, response.totalPages)
+        return (response.results, response.totalPages)
     }
 }

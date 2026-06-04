@@ -8,6 +8,7 @@
 import UIKit
 
 final class MoviesRouter: MoviesPresenterToRouterProtocol {
+    
     static func createModule(genre: Genre) -> UIViewController {
         let view = MoviesViewController()
         let presenter = MoviesPresenter(genre: genre)
@@ -23,7 +24,10 @@ final class MoviesRouter: MoviesPresenterToRouterProtocol {
         return view
     }
     
-    func navigateToMovieDetail(id: Int) {
-        print(#function)
+    func navigateToMovieDetail(view: MoviesPresenterToViewProtocol, id: Int) {
+        guard let vc = view as? UIViewController else { return }
+        let movieDetailVC = MovieDetailRouter.createModule(movieId: id)
+        vc.navigationController?.pushViewController(movieDetailVC, animated: true)
     }
+
 }

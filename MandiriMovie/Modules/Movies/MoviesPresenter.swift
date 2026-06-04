@@ -59,7 +59,8 @@ final class MoviesPresenter: MoviesViewToPresenterProtocol {
     }
     
     func didSelectMovie(_ movie: Movie) {
-        print(#function)
+        guard let view = view else { return }
+        router?.navigateToMovieDetail(view: view, id: movie.id)
     }
     
     func didPullToRefresh() {

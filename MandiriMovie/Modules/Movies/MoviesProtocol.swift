@@ -10,7 +10,7 @@ import UIKit
 //MARK: - Presenter -> Router
 protocol MoviesPresenterToRouterProtocol: AnyObject {
     static func createModule(genre: Genre) -> UIViewController
-    func navigateToMovieDetail(id: Int)
+    func navigateToMovieDetail(view: MoviesPresenterToViewProtocol, id: Int)
 }
 
 //MARK: - View -> Presenter

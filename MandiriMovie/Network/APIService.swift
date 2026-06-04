@@ -35,7 +35,9 @@ final class APIService: APIServiceProtocol {
         }
         
         do {
-            return try JSONDecoder().decode(T.self, from: data)
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            return try decoder.decode(T.self, from: data)
         } catch {
             throw APIError.decodingError(error)
         }
