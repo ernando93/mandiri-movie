@@ -113,11 +113,11 @@ extension MoviesViewController: MoviesPresenterToViewProtocol {
     }
     
     func showLoading() {
-        print(#function)
+        activityIndicator.startAnimating()
     }
     
     func hideLoading() {
-        print(#function)
+        activityIndicator.stopAnimating()
     }
     
 }

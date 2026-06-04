@@ -49,7 +49,9 @@ final class MoviesPresenter: MoviesViewToPresenterProtocol {
             if isFirstLoad && movies.isEmpty {
                 //show empty layout
             } else {
-                view?.showMovies(movies, replace: isFirstLoad)
+                await MainActor.run {
+                    view?.showMovies(movies, replace: isFirstLoad)
+                }
             }
         } catch {
             view?.showError(error.localizedDescription)
