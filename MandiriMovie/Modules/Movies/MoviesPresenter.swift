@@ -25,6 +25,14 @@ final class MoviesPresenter: MoviesViewToPresenterProtocol {
         }
     }
     
+    func loadNextPage() {
+        guard pagination.canLoadMore else { return }
+        pagination.startFetching()
+        Task {
+            await loadMovies()
+        }
+    }
+    
     private func loadMovies() async {
         view?.showLoading()
         

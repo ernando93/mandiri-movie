@@ -89,21 +89,21 @@ extension MoviesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard  indexPath.row == movies.count - 3 else { return }
         isLoadingMore = true
-        tableView.reloadSections(IndexSet(integer: 1), with: .none)
-        //presenter?.loadNextPage()
+        presenter?.loadNextPage()
     }
 }
 
 extension MoviesViewController: MoviesPresenterToViewProtocol {
     func showMovies(_ movies: [Movie], replace: Bool) {
+        isLoadingMore = false
         if replace {
             refreshControl.endRefreshing()
             self.movies = movies
             tableView.reloadData()
         } else {
-            let startIndex = movies.count
+            let startIndex = self.movies.count
             self.movies.append(contentsOf: movies)
-            let indexPaths = (startIndex..<movies.count).map { IndexPath(row: $0, section: 0) }
+            let indexPaths = (startIndex..<self.movies.count).map { IndexPath(row: $0, section: 0) }
             tableView.insertRows(at: indexPaths, with: .automatic)
         }
     }

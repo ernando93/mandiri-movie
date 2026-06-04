@@ -108,7 +108,7 @@ final class MovieCell: UITableViewCell {
         releaseDateLabel.text = "📅 \(movie.releaseDate)"
         overviewLabel.text = movie.overview
         
-        posterImageView.kf.setImage(with: movie.posterURL, placeholder: UIImage(systemName: "film"))
+        posterImageView.kf.setImage(with: movie.posterURL, placeholder: UIImage(named: "poster-placeholder"))
     }
 }
 

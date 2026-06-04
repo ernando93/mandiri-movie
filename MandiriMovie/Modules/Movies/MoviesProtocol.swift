@@ -20,6 +20,7 @@ protocol MoviesViewToPresenterProtocol: AnyObject {
     var router: MoviesPresenterToRouterProtocol? { get set }
     
     func viewDidLoad()
+    func loadNextPage()
     func didSelectMovie(_ movie: Movie)
     func didPullToRefresh()
 }
