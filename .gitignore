@@ -1,6 +1,3 @@
-# Secrets
-**/Config.plist
-
 # Xcode
 DerivedData/
 *.xcuserstate
