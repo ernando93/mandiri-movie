@@ -40,7 +40,7 @@ final class MovieDetailPresenter: MovieDetailViewToPresenterProtocol {
             let (movieDetail, reviewsResult, videoResult) = try await (detail, reviews, videos)
 
             view?.showMovieDetail(movieDetail)
-            view?.showReviews(reviewsResult.0)
+            view?.showReviews(reviewsResult.0, totalReviews: reviewsResult.1)
             view?.showTrailer(videoResult.first(where: { $0.isYouTubeTrailer })?.key)
 
             trailerKey = videoResult.first(where: { $0.isYouTubeTrailer })?.key
@@ -49,16 +49,13 @@ final class MovieDetailPresenter: MovieDetailViewToPresenterProtocol {
         }
     }
     
-    func loadNextReviewPage() {
-        print(#function)
-    }
-    
     func didTapWatchTrailer() {
         guard let trailerKey else { return }
         router?.openTrailer(videoKey: trailerKey)
     }
     
     func didTapSeeAllReviews() {
-        print(#function)
+        guard let view = view else { return }
+        router?.navigateToAllReviews(view: view, movieId: movieId)
     }
 }

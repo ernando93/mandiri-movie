@@ -86,6 +86,7 @@ struct ReviewResponse: Decodable {
     let results: [Review]
     let page: Int
     let totalPages: Int
+    let totalResults: Int
 }
 
 // MARK: - Video

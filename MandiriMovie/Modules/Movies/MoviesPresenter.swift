@@ -34,7 +34,9 @@ final class MoviesPresenter: MoviesViewToPresenterProtocol {
     }
     
     private func loadMovies() async {
-        view?.showLoading()
+        if pagination.currentPage == 1 {
+            view?.showLoading()
+        }
         
         defer {
             view?.hideLoading()

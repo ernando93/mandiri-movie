@@ -27,7 +27,9 @@ final class MovieDetailRouter: MovieDetailPresenterToRouterProtocol {
         UIApplication.shared.open(url)
     }
     
-    func navigateToAllReviews(movieId: Int) {
-        print(#function)
+    func navigateToAllReviews(view: MovieDetailPresenterToViewProtocol, movieId: Int) {
+        guard let vc = view as? UIViewController else { return }
+        let reviewsVC = ReviewsRouter.createModule(movieId: movieId)
+        vc.navigationController?.pushViewController(reviewsVC, animated: true)
     }
 }

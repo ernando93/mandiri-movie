@@ -18,7 +18,7 @@ final class GenresViewController: UIViewController {
         layout.minimumLineSpacing = 12
         layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         let coll = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        coll.backgroundColor = .systemGroupedBackground
+        coll.backgroundColor = .white
         coll.register(GenreCell.self, forCellWithReuseIdentifier: GenreCell.identifier)
         return coll
     }()
@@ -40,7 +40,7 @@ final class GenresViewController: UIViewController {
     
     private func setupUI() {
         title = "Movie Genres"
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
         
         view.addSubview(collectionView)

@@ -19,7 +19,7 @@ final class MovieDetailInteractor: MovieDetailPresenterToInteractorProtocol {
     
     func fetchReviews(movieId: Int, page: Int) async throws -> ([Review], Int) {
         let  response = try await apiService.request(endpoint: .reviews(movieId: movieId, page: page)) as ReviewResponse
-        return (response.results, response.totalPages)
+        return (response.results, response.totalResults)
     }
     
     func fetchVideos(movieId: Int) async throws -> [Video] {

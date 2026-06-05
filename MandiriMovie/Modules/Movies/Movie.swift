@@ -17,16 +17,6 @@ struct Movie: Decodable {
     let voteCount: Int
     let releaseDate: String
     let genreIds: [Int]?
-
-//    enum CodingKeys: String, CodingKey {
-//        case id, title, overview
-//        case posterPath = "poster_path"
-//        case backdropPath = "backdrop_path"
-//        case voteAverage = "vote_average"
-//        case voteCount = "vote_count"
-//        case releaseDate = "release_date"
-//        case genreIds = "genre_ids"
-//    }
     
     var posterURL: URL? {
         guard let path = posterPath else { return nil }
@@ -48,11 +38,4 @@ struct MovieResponse: Decodable {
     let page: Int
     let totalPages: Int
     let totalResults: Int
-    
-//    enum CodingKeys: String, CodingKey {
-//        case movies = "results"
-//        case page
-//        case totalPages = "total_pages"
-//        case totalResults = "total_results"
-//    }
 }

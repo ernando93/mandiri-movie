@@ -16,7 +16,6 @@ protocol MovieDetailViewToPresenterProtocol: AnyObject {
     var router: MovieDetailPresenterToRouterProtocol? { get set }
 
     func viewDidLoad()
-    func loadNextReviewPage()
     func didTapWatchTrailer()
     func didTapSeeAllReviews()
 }
@@ -24,7 +23,7 @@ protocol MovieDetailViewToPresenterProtocol: AnyObject {
 // MARK: - Presenter -> View
 protocol MovieDetailPresenterToViewProtocol: AnyObject {
     func showMovieDetail(_ detail: MovieDetail)
-    func showReviews(_ reviews: [Review])
+    func showReviews(_ reviews: [Review], totalReviews: Int)
     func showTrailer(_ trailerKey: String?)
     func showError(_ message: String)
     func showLoading()
@@ -42,5 +41,5 @@ protocol MovieDetailPresenterToInteractorProtocol: AnyObject {
 protocol MovieDetailPresenterToRouterProtocol: AnyObject {
     static func createModule(movieId: Int) -> UIViewController
     func openTrailer(videoKey: String)
-    func navigateToAllReviews(movieId: Int)
+    func navigateToAllReviews(view: MovieDetailPresenterToViewProtocol, movieId: Int)
 }

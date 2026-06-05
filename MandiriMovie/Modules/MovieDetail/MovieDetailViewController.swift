@@ -152,7 +152,7 @@ final class MovieDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         setupNavigationBar()
         setupUI()
         presenter?.viewDidLoad()
@@ -277,7 +277,7 @@ final class MovieDetailViewController: UIViewController {
     }
 
     @objc private func didTapSeeAll() {
-        print(#function)
+        presenter?.didTapSeeAllReviews()
     }
 }
 
@@ -296,10 +296,9 @@ extension MovieDetailViewController: MovieDetailPresenterToViewProtocol {
         posterImageView.kf.setImage(with: detail.posterURL, placeholder: UIImage(named: "poster-placeholder"))
     }
     
-    func showReviews(_ reviews: [Review]) {
-        let totalReviews = reviews.count
+    func showReviews(_ reviews: [Review], totalReviews: Int) {
         seeAllButton.isHidden = totalReviews <= 5
-        reviewCountLabel.text = "Reviews (\(reviews.count))"
+        reviewCountLabel.text = "Reviews (\(totalReviews))"
         reviewsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         reviews.prefix(5).forEach { review in
             let card = ReviewCardView(review: review)

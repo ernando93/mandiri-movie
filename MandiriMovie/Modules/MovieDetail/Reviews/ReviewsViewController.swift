@@ -1,25 +1,25 @@
 //
-//  MoviesViewController.swift
+//  ReviewsViewController.swift
 //  MandiriMovie
 //
-//  Created by ITUMAC02 on 03/06/26.
+//  Created by ITUMAC02 on 05/06/26.
 //
 
 import UIKit
 import SnapKit
 
-final class MoviesViewController: UIViewController {
-    var presenter: MoviesViewToPresenterProtocol?
+final class ReviewsViewController: UIViewController {
+    var presenter: ReviewsViewToPresenterProtocol?
     
-    private var movies: [Movie] = []
+    private var reviews: [Review] = []
     
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 140
-        tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.identifier)
+        tableView.estimatedRowHeight = 120
+        tableView.register(ReviewCell.self, forCellReuseIdentifier: ReviewCell.identifier)
         return tableView
     }()
     
@@ -56,51 +56,47 @@ final class MoviesViewController: UIViewController {
     }
     
     @objc private func handleRefresh() {
-        movies.removeAll()
+        reviews.removeAll()
         tableView.reloadData()
         presenter?.didPullToRefresh()
     }
 }
 
 // MARK: - UITableViewDataSource
-extension MoviesViewController: UITableViewDataSource {
+extension ReviewsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return reviews.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.identifier, for: indexPath) as! MovieCell
-        cell.configure(with: movies[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReviewCell.identifier, for: indexPath) as! ReviewCell
+        cell.configure(with: reviews[indexPath.row])
         return cell
     }
 }
 
 // MARK: - UITableViewDelegate
-extension MoviesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.didSelectMovie(movies[indexPath.row])
-    }
-
+extension ReviewsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard  indexPath.row == movies.count - 3 else { return }
+        guard  indexPath.row == reviews.count - 3 else { return }
         presenter?.loadNextPage()
     }
 }
 
-extension MoviesViewController: MoviesPresenterToViewProtocol {
-    func showMovies(_ movies: [Movie], replace: Bool) {
+extension ReviewsViewController: ReviewsPresenterToViewProtocol {
+    func showReviews(_ reviews: [Review], replace: Bool) {
         if replace {
             refreshControl.endRefreshing()
-            self.movies = movies
+            self.reviews = reviews
             tableView.reloadData()
         } else {
-            let startIndex = self.movies.count
-            self.movies.append(contentsOf: movies)
-            let indexPaths = (startIndex..<self.movies.count).map { IndexPath(row: $0, section: 0) }
+            let startIndex = self.reviews.count
+            self.reviews.append(contentsOf: reviews)
+            let indexPaths = (startIndex..<self.reviews.count).map { IndexPath(row: $0, section: 0) }
             tableView.insertRows(at: indexPaths, with: .automatic)
         }
     }
@@ -116,5 +112,4 @@ extension MoviesViewController: MoviesPresenterToViewProtocol {
     func hideLoading() {
         activityIndicator.stopAnimating()
     }
-    
 }
